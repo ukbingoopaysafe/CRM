@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,6 +12,10 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_RENTAL_AGENT = 'rental_agent';
+    public const ROLE_RESALE_AGENT = 'resale_agent';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -22,6 +25,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'phone',
+        'is_active',
     ];
 
     /**
@@ -44,6 +50,37 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_active' => 'boolean',
         ];
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isRentalAgent(): bool
+    {
+        return $this->role === self::ROLE_RENTAL_AGENT || $this->isAdmin();
+    }
+
+    public function isResaleAgent(): bool
+    {
+        return $this->role === self::ROLE_RESALE_AGENT || $this->isAdmin();
+    }
+
+    public function rentalRequests()
+    {
+        return $this->hasMany(RentalRequest::class, 'assigned_to');
+    }
+
+    public function resaleRequests()
+    {
+        return $this->hasMany(ResaleRequest::class, 'assigned_to');
+    }
+
+    public function followUps()
+    {
+        return $this->hasMany(FollowUp::class, 'assigned_to');
     }
 }

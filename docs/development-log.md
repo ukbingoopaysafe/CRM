@@ -45,3 +45,32 @@
   * `docs/05-resale-pipeline.md`: مسار دورة حياة طلبات الريسيل والأقساط.
   * `docs/06-business-rules.md`: القواعد التشغيلية وضوابط الفحص والمعاينة وتكرار الهواتف.
   * `docs/development-log.md`: سجل الإنجازات البرمجية.
+
+### 3. بناء وتأسيس قاعدة البيانات والنماذج (المرحلة 2)
+* [x] **إنشاء ملفات الترحيل (Migrations):**
+  * `2026_10_14_000001_add_role_and_phone_to_users_table.php`
+  * `2026_10_14_000002_create_clients_and_brokers_tables.php`
+  * `2026_10_14_000003_create_rental_requests_and_requirements_tables.php`
+  * `2026_10_14_000004_create_resale_requests_and_requirements_tables.php`
+  * `2026_10_14_000005_create_nominations_inspections_showings_tables.php`
+  * `2026_10_14_000006_create_deals_activities_followups_tables.php`
+* [x] **بناء نماذج Eloquent Models مع العلاقات الكاملة والـ Scopes:**
+  * `User`: أدوار `admin`, `rental_agent`, `resale_agent` ودوال مساعدة.
+  * `Client`: مع دالة تنقية الهاتف `normalizePhone` وحدث الموديل `static::saving`.
+  * `Broker`: إدارة الوسطاء والشركاء الخارجيين.
+  * `RentalRequest` & `RentalRequirement`: طلبات ومتطلبات الإيجار والميزانية المزدوجة.
+  * `ResaleRequest` & `ResaleRequirement`: طلبات ومتطلبات الريسيل ونظام السداد والأقساط.
+  * `UnitNomination`: ترشيحات الوحدات ودالة صمام أمان المعاينة `isSuitableForShowing()`.
+  * `UnitInspection`: فحوصات الجودة الميدانية وتقييم مطابقة الواقع وأسباب الرفض.
+  * `ClientShowing`: معاينات العملاء الميدانية وحالاتها.
+  * `DealOutcome`: إغلاق الصفقات الناجحة والخاسرة واحتساب العمولات.
+  * `Activity`: سجل الأنشطة والاتصالات مع دالة مساعدة سريعة `Activity::log()`.
+  * `FollowUp`: المتابعات والتنبيه للمتأخر منها عبر الـ Scopes (`overdue()`, `today()`, `upcoming()`).
+* [x] **بناء DatabaseSeeder متكامل:**
+  * ملء قاعدة البيانات بحسابات موظفين حقيقية (مدير، موظف إيجار، موظفة ريسيل).
+  * عملاء ووسطاء حقيقيين وبيانات مشاريع ووحدات (هايد بارك، ميفيدا، بادية، النرجس).
+  * ترشيحات وحدات وفحوصات مطابقة وأخرى غير مطابقة للتحقق من صمام الأمان.
+  * صفقات ريسيل مغلقة بنجاح بعمولاتها ومتابعات مجدولة ومتأخرة.
+* [x] **كتابة اختبارات برمجية مؤتمتة (Unit Tests):**
+  * إنشاء `tests/Unit/DomainRulesTest.php`.
+  * اجتياز 7 اختبارات بـ 22 فحص توكيد (22 Assertions) بنسبة نجاح 100% دون أي أخطاء.
