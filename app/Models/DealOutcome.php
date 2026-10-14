@@ -65,4 +65,15 @@ class DealOutcome extends Model
     {
         return $this->belongsTo(User::class, 'closed_by');
     }
+
+    public function getClientAttribute(): ?Client
+    {
+        if ($this->rentalRequest) {
+            return $this->rentalRequest->client;
+        }
+        if ($this->resaleRequest) {
+            return $this->resaleRequest->client;
+        }
+        return null;
+    }
 }
