@@ -48,6 +48,11 @@ class ResaleRequestResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice2;
 
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->isResaleAgent() ?? false;
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema
