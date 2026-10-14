@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Database\Factories\UserFactory;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
@@ -15,6 +17,16 @@ class User extends Authenticatable
     public const ROLE_ADMIN = 'admin';
     public const ROLE_RENTAL_AGENT = 'rental_agent';
     public const ROLE_RESALE_AGENT = 'resale_agent';
+
+    protected $attributes = [
+        'is_active' => true,
+        'role' => self::ROLE_ADMIN,
+    ];
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return (bool) ($this->is_active ?? true);
+    }
 
     /**
      * The attributes that are mass assignable.
