@@ -5,6 +5,12 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
+// Auto-correct case for Apache XAMPP subdirectory (crm -> CRM)
+if (isset($_SERVER['REQUEST_URI']) && preg_match('#^/crm(/.*)?$#', $_SERVER['REQUEST_URI'], $matches)) {
+    header('Location: /CRM' . ($matches[1] ?? ''));
+    exit;
+}
+
 // Determine if the application is in maintenance mode...
 if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
     require $maintenance;
