@@ -15,6 +15,7 @@
 | **[04-rental-pipeline.md](file:///e:/xampp/htdocs/CRM/docs/04-rental-pipeline.md)** | دليل دورة حياة طلبات الإيجار والميزانية والترشيحات والفحص والمعاينة. |
 | **[05-resale-pipeline.md](file:///e:/xampp/htdocs/CRM/docs/05-resale-pipeline.md)** | دليل دورة حياة طلبات الريسيل وأنظمة السداد والأقساط والصفقات. |
 | **[06-business-rules.md](file:///e:/xampp/htdocs/CRM/docs/06-business-rules.md)** | القواعد التشغيلية الصارمة (منع تكرار الهواتف، شرط الفحص قبل المعاينة، إلخ). |
+| **[07-user-operational-manual.md](file:///e:/xampp/htdocs/CRM/docs/07-user-operational-manual.md)** | الدليل التشغيلي المرجعي الشامل للمستخدمين ومسؤولي المبيعات والإدارة. |
 | **[development-log.md](file:///e:/xampp/htdocs/CRM/docs/development-log.md)** | سجل المطور التراكمي (Dev Log) يوثق كل خطوة تم تنفيذها وتاريخها ونتائجها. |
 
 ---
