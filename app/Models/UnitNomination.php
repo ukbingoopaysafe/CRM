@@ -77,4 +77,23 @@ class UnitNomination extends Model
         $latest = $this->latestInspection;
         return $latest !== null && $latest->result === UnitInspection::RESULT_SUITABLE;
     }
+
+    public function getClientAttribute(): ?Client
+    {
+        if ($this->rentalRequest) {
+            return $this->rentalRequest->client;
+        }
+        if ($this->resaleRequest) {
+            return $this->resaleRequest->client;
+        }
+        return null;
+    }
+
+    public function getRequestDescriptionAttribute(): string
+    {
+        if ($this->request_type === self::TYPE_RENTAL) {
+            return "طلب إيجار #{$this->rental_request_id} - " . ($this->rentalRequest?->client?->name ?? 'عميل غير محدد');
+        }
+        return "طلب ريسيل #{$this->resale_request_id} - " . ($this->resaleRequest?->client?->name ?? 'عميل غير محدد');
+    }
 }

@@ -39,4 +39,9 @@ class ClientShowing extends Model
     {
         return $this->belongsTo(User::class, 'assigned_to');
     }
+
+    public function getClientAttribute(): ?Client
+    {
+        return $this->nomination?->client;
+    }
 }
