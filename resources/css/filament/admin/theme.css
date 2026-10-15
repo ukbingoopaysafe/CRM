@@ -1,0 +1,531 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+/* ==========================================================================
+   Perplexity AI — Design System & Style Reference
+   Aged-paper canvas (#faf8f5), monochrome controls (#27251e), hairline borders (#d1d1cd),
+   pill radii (9999px), and deep teal functional punctuation (#016a71).
+   ========================================================================== */
+
+:root {
+    /* Colors */
+    --color-aged-paper: #faf8f5;
+    --color-ink-black: #000000;
+    --color-charcoal: #27251e;
+    --color-ash-gray: #72706b;
+    --color-stone: #92918b;
+    --color-pebble: #d1d1cd;
+    --color-deep-teal: #016a71;
+
+    /* Typography — Font Families */
+    --font-pplxsans: 'pplxSans', 'DM Sans', 'Inter', 'Cairo', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    /* Typography — Scale */
+    --text-caption: 12px;
+    --leading-caption: 1.43;
+    --text-body-sm: 14px;
+    --leading-body-sm: 1.43;
+    --text-body: 16px;
+    --leading-body: 1.43;
+
+    /* Typography — Weights */
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+
+    /* Spacing */
+    --spacing-unit: 8px;
+    --spacing-4: 4px;
+    --spacing-8: 8px;
+    --spacing-10: 10px;
+    --spacing-12: 12px;
+    --spacing-16: 16px;
+    --spacing-32: 32px;
+
+    /* Layout */
+    --page-max-width: 640px;
+    --section-gap: 32px;
+    --card-padding: 12px;
+    --element-gap: 8px;
+
+    /* Border Radius */
+    --radius-md: 6px;
+    --radius-xl: 12px;
+    --radius-2xl: 16px;
+    --radius-full: 9999px;
+
+    /* Named Radii */
+    --radius-tags: 9999px;
+    --radius-cards: 16px;
+    --radius-input: 12px;
+    --radius-buttons: 9999px;
+    --radius-nav-items: 9999px;
+
+    /* Shadows */
+    --shadow-subtle: rgba(0, 0, 0, 0.08) 0px 1px 2px 0px;
+
+    /* Surfaces */
+    --surface-canvas: #faf8f5;
+    --surface-card: #ffffff;
+    --surface-subtle-fill: #e8e6e1;
+}
+
+@theme {
+    --color-aged-paper: #faf8f5;
+    --color-ink-black: #000000;
+    --color-charcoal: #27251e;
+    --color-ash-gray: #72706b;
+    --color-stone: #92918b;
+    --color-pebble: #d1d1cd;
+    --color-deep-teal: #016a71;
+
+    --font-pplxsans: 'pplxSans', 'DM Sans', 'Inter', 'Cairo', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    --text-caption: 12px;
+    --leading-caption: 1.43;
+    --text-body-sm: 14px;
+    --leading-body-sm: 1.43;
+    --text-body: 16px;
+    --leading-body: 1.43;
+
+    --spacing-4: 4px;
+    --spacing-8: 8px;
+    --spacing-10: 10px;
+    --spacing-12: 12px;
+    --spacing-16: 16px;
+    --spacing-32: 32px;
+
+    --radius-md: 6px;
+    --radius-xl: 12px;
+    --radius-2xl: 16px;
+    --radius-full: 9999px;
+
+    --shadow-subtle: rgba(0, 0, 0, 0.08) 0px 1px 2px 0px;
+}
+
+/* ==========================================================================
+   Typography Constraints: 400 & 500 weights only (no bold 600+)
+   ========================================================================== */
+body, .fi-body, button, input, select, textarea, span, p, a, h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-pplxsans) !important;
+}
+
+.font-bold, .font-semibold, .font-extrabold {
+    font-weight: 500 !important;
+}
+
+/* ==========================================================================
+   Surfaces & Canvas Layering
+   ========================================================================== */
+html.fi,
+body.fi-body,
+.fi-layout,
+.fi-main-ctn,
+.fi-simple-layout {
+    background-color: var(--color-aged-paper) !important;
+    color: var(--color-charcoal) !important;
+}
+
+::selection {
+    background-color: rgba(1, 106, 113, 0.18) !important;
+    color: var(--color-charcoal) !important;
+}
+
+/* ==========================================================================
+   Top Navigation Bar
+   ========================================================================== */
+.fi-topbar-ctn,
+.fi-topbar {
+    background-color: var(--color-aged-paper) !important;
+    border-bottom: 1px solid var(--color-pebble) !important;
+    box-shadow: none !important;
+}
+
+.fi-topbar-start .fi-logo {
+    color: var(--color-charcoal) !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.02em;
+}
+
+/* ==========================================================================
+   Sidebar Rail Navigation
+   ========================================================================== */
+.fi-sidebar {
+    background-color: var(--color-aged-paper) !important;
+    border-inline-end: 1px solid var(--color-pebble) !important;
+    box-shadow: none !important;
+}
+
+.fi-sidebar-header-controls::after {
+    border-top: 1px solid var(--color-pebble) !important;
+}
+
+.fi-sidebar-group-label {
+    color: var(--color-ash-gray) !important;
+    font-size: var(--text-caption) !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+}
+
+/* Sidebar Nav Item: 36px height, 9999px radius, #27251e text */
+.fi-sidebar-item-btn {
+    min-height: 36px !important;
+    height: 36px !important;
+    border-radius: var(--radius-full) !important;
+    padding-inline: 12px !important;
+    color: var(--color-charcoal) !important;
+    font-size: var(--text-body-sm) !important;
+    font-weight: 400 !important;
+    transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+.fi-sidebar-item-btn:hover {
+    background-color: var(--surface-subtle-fill) !important;
+    color: var(--color-charcoal) !important;
+}
+
+.fi-sidebar-item-btn .fi-icon {
+    color: var(--color-ash-gray) !important;
+    width: 16px !important;
+    height: 16px !important;
+    transition: color 0.15s ease !important;
+}
+
+.fi-sidebar-item-btn:hover .fi-icon {
+    color: var(--color-charcoal) !important;
+}
+
+/* Active Nav Item: #e8e6e1 background fill, #016a71 teal punctuation */
+.fi-sidebar-item.fi-active > .fi-sidebar-item-btn {
+    background-color: var(--surface-subtle-fill) !important;
+    color: var(--color-charcoal) !important;
+    font-weight: 500 !important;
+}
+
+.fi-sidebar-item.fi-active > .fi-sidebar-item-btn .fi-icon {
+    color: var(--color-deep-teal) !important;
+}
+
+.fi-sidebar-item.fi-active > .fi-sidebar-item-btn .fi-sidebar-item-label {
+    color: var(--color-charcoal) !important;
+    font-weight: 500 !important;
+}
+
+/* ==========================================================================
+   Hero Search & Input Surfaces
+   ========================================================================== */
+.fi-input-wrp {
+    background-color: var(--surface-card) !important;
+    border-radius: var(--radius-input) !important;
+    border: 1px solid var(--color-pebble) !important;
+    box-shadow: none !important;
+    ring-width: 0 !important;
+    outline: none !important;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.fi-input-wrp:hover {
+    border-color: #b5b4af !important;
+}
+
+.fi-input-wrp:focus-within {
+    border-color: var(--color-deep-teal) !important;
+    box-shadow: 0 0 0 1px var(--color-deep-teal) !important;
+}
+
+.fi-input,
+input.fi-input,
+select.fi-select-input,
+textarea.fi-input {
+    color: var(--color-charcoal) !important;
+    font-size: var(--text-body-sm) !important;
+    font-weight: 400 !important;
+}
+
+.fi-input::placeholder,
+input::placeholder,
+textarea::placeholder {
+    color: var(--color-stone) !important;
+    font-weight: 400 !important;
+}
+
+/* Global Search Input: Centered, clean library research terminal feel */
+.fi-global-search-ctn .fi-input-wrp {
+    border-radius: var(--radius-full) !important;
+    background-color: var(--surface-card) !important;
+    border: 1px solid var(--color-pebble) !important;
+    padding-inline: 8px !important;
+}
+
+.fi-global-search-results-ctn {
+    background-color: var(--surface-card) !important;
+    border: 1px solid var(--color-pebble) !important;
+    border-radius: var(--radius-cards) !important;
+    box-shadow: var(--shadow-subtle) !important;
+}
+
+/* ==========================================================================
+   Interactive Controls & Buttons
+   Pill (9999px) radius on all buttons.
+   Primary action: #27251e charcoal background, white text.
+   ========================================================================== */
+.fi-btn,
+.fi-icon-btn,
+button.fi-btn {
+    border-radius: var(--radius-full) !important;
+    font-size: var(--text-body-sm) !important;
+    font-weight: 500 !important;
+    transition: all 0.15s ease !important;
+}
+
+/* Primary Action Buttons: Charcoal #27251e with white text */
+.fi-btn.fi-color-primary:not(.fi-outlined),
+.fi-btn[type="submit"]:not(.fi-outlined),
+.fi-btn-color-primary:not(.fi-outlined) {
+    background-color: var(--color-charcoal) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--color-charcoal) !important;
+    box-shadow: none !important;
+}
+
+.fi-btn.fi-color-primary:not(.fi-outlined):hover,
+.fi-btn[type="submit"]:not(.fi-outlined):hover,
+.fi-btn-color-primary:not(.fi-outlined):hover {
+    background-color: #3f3c33 !important;
+    border-color: #3f3c33 !important;
+}
+
+.fi-btn.fi-color-primary:not(.fi-outlined) .fi-icon,
+.fi-btn[type="submit"]:not(.fi-outlined) .fi-icon {
+    color: #ffffff !important;
+}
+
+/* Outlined & Secondary Buttons: Pebble border, charcoal text, subtle hover */
+.fi-btn.fi-outlined,
+.fi-btn.fi-color-gray:not(.fi-outlined) {
+    background-color: var(--surface-card) !important;
+    border: 1px solid var(--color-pebble) !important;
+    color: var(--color-charcoal) !important;
+    box-shadow: none !important;
+}
+
+.fi-btn.fi-outlined:hover,
+.fi-btn.fi-color-gray:not(.fi-outlined):hover {
+    background-color: var(--surface-subtle-fill) !important;
+    border-color: var(--color-pebble) !important;
+    color: var(--color-charcoal) !important;
+}
+
+.fi-btn.fi-outlined .fi-icon,
+.fi-btn.fi-color-gray .fi-icon {
+    color: var(--color-ash-gray) !important;
+}
+
+/* Icon Buttons: circular, 9999px radius */
+.fi-icon-btn {
+    border-radius: var(--radius-full) !important;
+    color: var(--color-ash-gray) !important;
+    transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+.fi-icon-btn:hover {
+    background-color: var(--surface-subtle-fill) !important;
+    color: var(--color-charcoal) !important;
+}
+
+/* ==========================================================================
+   Cards, Sections & Tables (Container Surfaces: Level 1)
+   Flat elevation, 16px radius, hairline 1px #d1d1cd border, subtle whisper shadow
+   ========================================================================== */
+.fi-section,
+.fi-section:not(.fi-aside),
+.fi-section.fi-aside > .fi-section-content-ctn,
+.fi-ta-ctn,
+.fi-simple-main,
+.fi-dropdown-panel,
+.fi-modal-window {
+    background-color: var(--surface-card) !important;
+    border: 1px solid var(--color-pebble) !important;
+    border-radius: var(--radius-cards) !important;
+    box-shadow: var(--shadow-subtle) !important;
+}
+
+/* Section headers and divided lines */
+.fi-section-header,
+.fi-ta-header,
+.fi-ta-header-toolbar,
+.fi-section-footer,
+.fi-modal-header,
+.fi-modal-footer {
+    border-color: var(--color-pebble) !important;
+}
+
+.fi-section-header-heading,
+.fi-ta-header-heading {
+    color: var(--color-charcoal) !important;
+    font-size: var(--text-body) !important;
+    font-weight: 500 !important;
+}
+
+.fi-section-header-description,
+.fi-ta-header-description {
+    color: var(--color-ash-gray) !important;
+    font-size: var(--text-body-sm) !important;
+    font-weight: 400 !important;
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+.fi-ta-table {
+    border-color: var(--color-pebble) !important;
+}
+
+/* Table Header Row */
+.fi-ta-table thead th,
+.fi-ta-header-cell {
+    background-color: var(--color-aged-paper) !important;
+    color: var(--color-ash-gray) !important;
+    font-size: var(--text-caption) !important;
+    font-weight: 500 !important;
+    border-bottom: 1px solid var(--color-pebble) !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+.fi-ta-header-cell-label {
+    color: var(--color-ash-gray) !important;
+    font-weight: 500 !important;
+}
+
+/* Table Body Rows */
+.fi-ta-table tbody tr {
+    border-bottom: 1px solid var(--color-pebble) !important;
+    transition: background-color 0.1s ease !important;
+}
+
+.fi-ta-table tbody tr:hover {
+    background-color: var(--color-aged-paper) !important;
+}
+
+.fi-ta-cell,
+.fi-ta-text-cell {
+    color: var(--color-charcoal) !important;
+    font-size: var(--text-body-sm) !important;
+}
+
+/* Table Pagination */
+.fi-pagination {
+    border-top: 1px solid var(--color-pebble) !important;
+    padding: 12px 16px !important;
+}
+
+.fi-pagination-item-btn {
+    border-radius: var(--radius-full) !important;
+    min-width: 32px !important;
+    height: 32px !important;
+    font-size: var(--text-caption) !important;
+    font-weight: 500 !important;
+}
+
+.fi-pagination-item-btn.fi-active {
+    background-color: var(--surface-subtle-fill) !important;
+    color: var(--color-deep-teal) !important;
+}
+
+/* ==========================================================================
+   Badges, Tags & Chips: 9999px radius
+   ========================================================================== */
+.fi-badge,
+.fi-ta-filter-indicator,
+.fi-dropdown-list-item-badge {
+    border-radius: var(--radius-tags) !important;
+    font-size: var(--text-caption) !important;
+    font-weight: 500 !important;
+    padding: 2px 10px !important;
+    line-height: var(--leading-caption) !important;
+}
+
+.fi-badge.fi-color-primary {
+    background-color: rgba(1, 106, 113, 0.1) !important;
+    color: var(--color-deep-teal) !important;
+    border: 1px solid rgba(1, 106, 113, 0.2) !important;
+}
+
+.fi-badge.fi-color-gray {
+    background-color: var(--surface-subtle-fill) !important;
+    color: var(--color-charcoal) !important;
+    border: 1px solid var(--color-pebble) !important;
+}
+
+/* ==========================================================================
+   Tabs Navigation: Pill Rounded, Deep Teal Active Indicator
+   ========================================================================== */
+.fi-tabs {
+    border-color: var(--color-pebble) !important;
+}
+
+.fi-tabs-item {
+    border-radius: var(--radius-full) !important;
+    font-size: var(--text-body-sm) !important;
+    font-weight: 400 !important;
+    color: var(--color-ash-gray) !important;
+    padding: 6px 14px !important;
+    transition: all 0.15s ease !important;
+}
+
+.fi-tabs-item:hover {
+    background-color: var(--surface-subtle-fill) !important;
+    color: var(--color-charcoal) !important;
+}
+
+.fi-tabs-item.fi-active {
+    background-color: var(--surface-subtle-fill) !important;
+    color: var(--color-deep-teal) !important;
+    font-weight: 500 !important;
+}
+
+.fi-tabs-item.fi-active .fi-tabs-item-label,
+.fi-tabs-item.fi-active .fi-icon {
+    color: var(--color-deep-teal) !important;
+}
+
+/* ==========================================================================
+   Skeleton & Loading Placeholders
+   Rounded 9999px, #f0eeea fill
+   ========================================================================== */
+.animate-pulse,
+.fi-loading {
+    border-radius: var(--radius-full) !important;
+}
+
+/* ==========================================================================
+   Modals, Dropdowns & Popovers
+   ========================================================================== */
+.fi-modal-window {
+    border-radius: var(--radius-cards) !important;
+    border: 1px solid var(--color-pebble) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+.fi-dropdown-panel {
+    border-radius: 12px !important;
+    border: 1px solid var(--color-pebble) !important;
+    background-color: var(--surface-card) !important;
+    box-shadow: var(--shadow-subtle) !important;
+    padding: 4px !important;
+}
+
+.fi-dropdown-list-item {
+    border-radius: var(--radius-full) !important;
+    font-size: var(--text-body-sm) !important;
+    color: var(--color-charcoal) !important;
+    padding: 6px 12px !important;
+}
+
+.fi-dropdown-list-item:hover {
+    background-color: var(--surface-subtle-fill) !important;
+    color: var(--color-charcoal) !important;
+}
