@@ -18,9 +18,19 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Illuminate\Support\Facades\App;
+use App\Filament\Resources\RentalRequests\RentalRequestResource;
+use App\Filament\Resources\ResaleRequests\ResaleRequestResource;
+use App\Filament\Resources\Clients\ClientResource;
+use App\Filament\Resources\Brokers\BrokerResource;
 
 class AdminPanelProvider extends PanelProvider
 {
+    public function boot(): void
+    {
+        App::setLocale('ar');
+    }
+
     public function panel(Panel $panel): Panel
     {
         return $panel
@@ -29,7 +39,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->login()
-            ->brandName('سيبل العقارية | CRM')
+            ->brandName('سيبل العقارية')
             ->font('Cairo')
             ->colors([
                 'primary' => Color::hex('#016a71'),
@@ -48,15 +58,19 @@ class AdminPanelProvider extends PanelProvider
                 ],
             ])
             ->darkMode(false)
-            ->sidebarCollapsibleOnDesktop()
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
+            ->sidebarCollapsibleOnDesktop(false)
+            ->resources([
+        \App\Filament\Resources\RentalRequests\RentalRequestResource::class,
+        \App\Filament\Resources\ResaleRequests\ResaleRequestResource::class,
+        \App\Filament\Resources\Clients\ClientResource::class,
+        \App\Filament\Resources\Brokers\BrokerResource::class,
+    ])
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
                 Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
-                AccountWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
